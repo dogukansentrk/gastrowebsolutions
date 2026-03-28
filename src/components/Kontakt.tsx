@@ -10,15 +10,39 @@ const contactDetails = [
 ];
 
 export function Kontakt() {
-  const [submitted, setSubmitted] = useState(false);
+  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      (e.target as HTMLFormElement).reset();
-    }, 3000);
+    setFormStatus('submitting');
+    
+    // Web3Forms integration
+    const formData = new FormData(e.currentTarget);
+    formData.append("access_key", "7ef22252-9160-4626-b010-bf8489c19753");
+    formData.append("subject", "Neue Kontaktanfrage für GastroWeb Solutions");
+    formData.append("from_name", "GastroWeb Solutions Website");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+      
+      const data = await response.json();
+      if (data.success) {
+        setFormStatus('success');
+        (e.target as HTMLFormElement).reset();
+        setTimeout(() => setFormStatus('idle'), 5000);
+      } else {
+        console.error("Web3Forms error:", data);
+        setFormStatus('error');
+        setTimeout(() => setFormStatus('idle'), 5000);
+      }
+    } catch (error) {
+      console.error("Web3Forms submission failed:", error);
+      setFormStatus('error');
+      setTimeout(() => setFormStatus('idle'), 5000);
+    }
   }
 
   return (
@@ -78,9 +102,13 @@ export function Kontakt() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="flex flex-col gap-4"
           >
+            {/* Honeypot field for spam prevention */}
+            <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} />
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <input
                 type="text"
+                name="Name"
                 placeholder="Ihr Name"
                 required
                 className="w-full rounded-lg px-4 py-3 text-sm font-light outline-none transition-colors"
@@ -94,6 +122,7 @@ export function Kontakt() {
               />
               <input
                 type="text"
+                name="Restaurant/Betrieb"
                 placeholder="Restaurant / Betrieb"
                 className="w-full rounded-lg px-4 py-3 text-sm font-light outline-none transition-colors"
                 style={{
@@ -107,6 +136,7 @@ export function Kontakt() {
             </div>
             <input
               type="email"
+              name="Email"
               placeholder="E-Mail-Adresse"
               required
               className="w-full rounded-lg px-4 py-3 text-sm font-light outline-none transition-colors"
@@ -120,6 +150,7 @@ export function Kontakt() {
             />
             <input
               type="tel"
+              name="Telefon"
               placeholder="Telefonnummer (optional)"
               className="w-full rounded-lg px-4 py-3 text-sm font-light outline-none transition-colors"
               style={{
@@ -131,6 +162,7 @@ export function Kontakt() {
               onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(232,237,245,0.1)'; }}
             />
             <select
+              name="Paket_Auswahl"
               className="w-full rounded-lg px-4 py-3 text-sm font-light outline-none cursor-pointer transition-colors"
               style={{
                 background: '#0E1E38',
@@ -142,13 +174,15 @@ export function Kontakt() {
               onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(232,237,245,0.1)'; }}
             >
               <option value="" disabled>Paket auswählen</option>
-              <option>Web Basic – einmalige Webseite</option>
-              <option>Web + Hosting – Rundum-sorglos-Paket</option>
-              <option>Noch unsicher – Beratung gewünscht</option>
+              <option value="Web Basic">Web Basic – einmalige Webseite</option>
+              <option value="Web + Hosting">Web + Hosting – Rundum-sorglos-Paket</option>
+              <option value="Noch unsicher">Noch unsicher – Beratung gewünscht</option>
             </select>
             <textarea
+              name="Nachricht"
               placeholder="Erzählen Sie uns kurz von Ihrem Betrieb und was Sie sich wünschen..."
               rows={5}
+              required
               className="w-full rounded-lg px-4 py-3 text-sm font-light outline-none resize-vertical transition-colors"
               style={{
                 background: '#0E1E38',
@@ -160,21 +194,31 @@ export function Kontakt() {
             />
             <button
               type="submit"
-              className="w-full py-3.5 rounded-lg text-sm font-semibold cursor-pointer transition-all duration-200 hover:-translate-y-0.5"
+              disabled={formStatus === 'submitting'}
+              className="w-full py-3.5 rounded-lg text-sm font-semibold cursor-pointer transition-all duration-200 mt-2 hover:-translate-y-0.5 disabled:opacity-75 disabled:cursor-not-allowed disabled:hover:translate-y-0"
               style={{
-                background: submitted ? '#1a5c3a' : '#1B3A6B',
+                background: formStatus === 'success' ? '#1a5c3a' : formStatus === 'error' ? '#8c2b2b' : '#1B3A6B',
                 color: '#EDF2FA',
                 border: 'none',
               }}
               onMouseEnter={(e) => {
-                if (!submitted) e.currentTarget.style.background = '#3E6FB5';
+                if (formStatus === 'idle') e.currentTarget.style.background = '#3E6FB5';
               }}
               onMouseLeave={(e) => {
-                if (!submitted) e.currentTarget.style.background = '#1B3A6B';
+                if (formStatus === 'idle') e.currentTarget.style.background = '#1B3A6B';
               }}
             >
-              {submitted ? 'Anfrage gesendet!' : 'Anfrage absenden'}
+              {formStatus === 'idle' && 'Anfrage absenden'}
+              {formStatus === 'submitting' && 'Wird gesendet...'}
+              {formStatus === 'success' && 'Anfrage erfolgreich gesendet!'}
+              {formStatus === 'error' && 'Fehler aufgetreten. Bitte erneut versuchen.'}
             </button>
+            
+            {formStatus === 'success' && (
+              <p className="text-center text-xs mt-2" style={{ color: '#a7f3d0' }}>
+                Wir haben Ihre Anfrage erhalten und melden uns in Kürze!
+              </p>
+            )}
           </motion.form>
         </div>
       </div>
