@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "homepage": "https://dogukansentrk.github.io/gastrowebsolutions",
+  "homepage": "https://gastrowebsolutions.com",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
