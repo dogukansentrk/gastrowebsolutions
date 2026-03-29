@@ -10,6 +10,7 @@ import { Kontakt } from '@/components/Kontakt';
 import { Footer } from '@/components/Footer';
 import { Impressum } from '@/components/Impressum';
 import { Datenschutz } from '@/components/Datenschutz';
+import { CookieBanner } from '@/components/CookieBanner';
 
 type Page = 'home' | 'impressum' | 'datenschutz';
 
@@ -40,6 +41,9 @@ function App() {
       {currentPage === 'datenschutz' && <Datenschutz />}
 
       <Footer onNavigate={setCurrentPage} />
+      
+      {/* Cookie Consent Banner */}
+      <CookieBanner />
     </>
   );
 }

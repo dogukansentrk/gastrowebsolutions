@@ -35,7 +35,21 @@ export function Datenschutz() {
 
             <div>
               <h2 className="text-xl font-medium text-white mb-2">3. Datenerfassung auf dieser Website</h2>
-              <h3 className="text-lg font-medium text-white mt-4 mb-2">Kontaktformular (Web3Forms)</h3>
+              
+              <h3 className="text-lg font-medium text-white mt-6 mb-2">Cookies</h3>
+              <p className="mb-4">
+                Unsere Internetseiten verwenden so genannte „Cookies“. Cookies sind kleine Textdateien und richten auf Ihrem Endgerät keinen Schaden an. Sie werden entweder vorübergehend für die Dauer einer Sitzung (Session-Cookies) oder dauerhaft (permanente Cookies) auf Ihrem Endgerät gespeichert. <br /><br />
+                Cookies, die zur Durchführung des elektronischen Kommunikationsvorgangs oder zur Bereitstellung bestimmter, von Ihnen erwünschter Funktionen erforderlich sind (technisch notwendige Cookies), werden auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO gespeichert. Wir haben ein berechtigtes Interesse an der Speicherung von Cookies zur technisch fehlerfreien und optimierten Bereitstellung unserer Dienste. <br /><br />
+                Sofern eine Einwilligung zur Speicherung von Cookies abgefragt wurde (Cookie-Consent-Banner), erfolgt die Verarbeitung ausschließlich auf Grundlage dieser Einwilligung (Art. 6 Abs. 1 lit. a DSGVO); die Einwilligung ist jederzeit widerrufbar.
+              </p>
+
+              <h3 className="text-lg font-medium text-white mt-6 mb-2">Analyse-Tools und Werbung (Marketing Cookies)</h3>
+              <p className="mb-4">
+                Sofern Sie im Cookie-Banner eingewilligt haben, verwenden wir auf dieser Website Tools zur Webanalyse (z.B. Google Analytics) und Marketing-Pixel (z.B. Meta Pixel). Diese Technologien ermöglichen es uns, das Nutzerverhalten auf unserer Website zu analysieren, den Erfolg unserer Werbekampagnen zu messen und zielgerichtete Werbung auszuspielen.<br /><br />
+                Durch diese Tools können Daten wie Ihre IP-Adresse, das Nutzerverhalten, die Verweildauer und Interaktionen erfasst und an die Server der jeweiligen Anbieter (die sich auch in den USA befinden können) übertragen werden. Die Nutzung dieser Analyse- und Marketing-Tools erfolgt ausschließlich auf Grundlage Ihrer ausdrücklichen Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO. Sie können Ihre Einwilligung jederzeit für die Zukunft widerrufen, indem Sie die Cookie-Einstellungen in Ihrem Browser anpassen oder die temporären Websitedaten löschen.
+              </p>
+
+              <h3 className="text-lg font-medium text-white mt-6 mb-2">Kontaktformular (Web3Forms)</h3>
               <p>
                 Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten (Name, E-Mail-Adresse, Telefonnummer, Nachricht) zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert.<br /><br />
                 Für die Verarbeitung nutzen wir den Dienstleister <strong>Web3Forms</strong>. Web3Forms verarbeitet die Formulardaten lediglich, um sie an uns als E-Mail weiterzuleiten, und speichert die Daten nicht dauerhaft auf eigenen Servern ab. Weitere Informationen zum Datenschutz von Web3Forms finden Sie in deren Datenschutzerklärung unter https://web3forms.com/privacy.<br /><br />
@@ -46,7 +60,7 @@ export function Datenschutz() {
             <div>
               <h2 className="text-xl font-medium text-white mb-2">4. Ihre Rechte</h2>
               <p>
-                Sie haben jederzeit das Recht, unentgeltlich Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten zu erhalten. Sie haben außerdem ein Recht, die Berichtigung oder Löschung dieser Daten zu verlangen. Hierzu sowie zu weiteren Fragen zum Thema Datenschutz können Sie sich jederzeit an uns (gastrowebsolutions@gmail.com) wenden.
+                Sie haben jederzeit das Recht, unentgeltlich Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten zu erhalten. Sie haben außerdem ein Recht, die Berichtigung oder Löschung dieser Daten zu verlangen. Zudem haben Sie das Recht, eine erteilte Einwilligung zur Datenverarbeitung jederzeit zu widerrufen. Hierzu sowie zu weiteren Fragen zum Thema Datenschutz können Sie sich jederzeit an uns (gastrowebsolutions@gmail.com) wenden.
               </p>
             </div>
           </div>
