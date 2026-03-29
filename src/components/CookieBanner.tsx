@@ -18,8 +18,15 @@ export function CookieBanner() {
     localStorage.setItem('gastroweb_cookie_consent', 'accepted');
     setIsVisible(false);
     
-    // Here we could trigger a function to load Google Analytics, Facebook Pixel, etc.
-    // window.dispatchEvent(new Event('cookieConsentAccepted'));
+    // Update Google Analytics Consent Mode v2 dynamically
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      (window as any).gtag('consent', 'update', {
+        'analytics_storage': 'granted',
+        'ad_storage': 'granted',
+        'ad_user_data': 'granted',
+        'ad_personalization': 'granted'
+      });
+    }
   };
 
   const handleDecline = () => {
