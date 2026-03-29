@@ -12,10 +12,35 @@
     <meta property="og:url" content="https://gastrowebsolutions.com/" />
     <meta property="og:image" content="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop" />
     <title>GastroWeb Solutions – Webdesign für die Gastronomie in Tirol</title>
+    
+    <!-- Google Analytics Consent Mode v2 -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      
+      // Check local storage for existing consent
+      var hasConsent = localStorage.getItem('gastroweb_cookie_consent') === 'accepted';
+      
+      gtag('consent', 'default', {
+        'analytics_storage': hasConsent ? 'granted' : 'denied',
+        'ad_storage': hasConsent ? 'granted' : 'denied',
+        'ad_user_data': hasConsent ? 'granted' : 'denied',
+        'ad_personalization': hasConsent ? 'granted' : 'denied'
+      });
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PFGBNMV85Z"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-PFGBNMV85Z');
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-    <script type="module" crossorigin src="/assets/index-BMPsCUNe.js"></script>
+    <script type="module" crossorigin src="/assets/index-H2rHjPWp.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-Cbwj6Vzi.css">
   </head>
   <body>
