@@ -2,7 +2,11 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
-export function Navbar() {
+interface NavbarProps {
+  onNavigate: (page: 'home' | 'impressum' | 'datenschutz') => void;
+}
+
+export function Navbar({ onNavigate }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const links = [
@@ -19,9 +23,15 @@ export function Navbar() {
         borderBottom: '1px solid rgba(27, 58, 107, 0.3)',
       }}>
 
-      <a href="#" className="font-display text-xl font-bold text-primary-100">
+      <button 
+        onClick={() => {
+          onNavigate('home');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
+        className="font-display text-xl font-bold text-primary-100 outline-none cursor-pointer"
+      >
         Gastro<span className="text-white">Web</span> Solutions
-      </a>
+      </button>
 
       {/* Desktop links */}
       <ul className="hidden md:flex items-center gap-8">
