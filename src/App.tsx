@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Navbar } from '@/components/Navbar';
 import { Hero } from '@/components/Hero';
+import { UberUns } from '@/components/UberUns';
 import { WarumWir } from '@/components/WarumWir';
 import { Pakete } from '@/components/Pakete';
 import { Team } from '@/components/Team';
@@ -26,6 +27,7 @@ function App() {
       {currentPage === 'home' && (
         <>
           <Hero />
+          <UberUns />
           <WarumWir />
           <Pakete />
           <Team />

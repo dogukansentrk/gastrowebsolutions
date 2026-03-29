@@ -10,10 +10,23 @@ export function Navbar({ onNavigate }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const links = [
-    { href: '#warum', label: 'Warum wir' },
-    { href: '#pakete', label: 'Pakete' },
-    { href: '#team', label: 'Team' },
+    { id: 'ueber-uns', label: 'Über uns' },
+    { id: 'warum', label: 'Warum wir' },
+    { id: 'pakete', label: 'Pakete' },
+    { id: 'team', label: 'Team' },
   ];
+
+  const handleLinkClick = (id: string) => {
+    setIsOpen(false);
+    onNavigate('home');
+    // Allow React state to update before scrolling
+    setTimeout(() => {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
+  };
 
   return (
     <nav className="fixed top-0 w-full z-50 px-6 md:px-12 py-4 flex items-center justify-between"
@@ -36,19 +49,19 @@ export function Navbar({ onNavigate }: NavbarProps) {
       {/* Desktop links */}
       <ul className="hidden md:flex items-center gap-8">
         {links.map((link) => (
-          <li key={link.href}>
-            <a
-              href={link.href}
-              className="text-sm text-primary-100/65 hover:text-white transition-colors font-normal tracking-wide"
+          <li key={link.id}>
+            <button
+              onClick={() => handleLinkClick(link.id)}
+              className="text-sm text-primary-100/65 hover:text-white transition-colors font-normal tracking-wide cursor-pointer outline-none"
             >
               {link.label}
-            </a>
+            </button>
           </li>
         ))}
         <li>
-          <a
-            href="#kontakt"
-            className="text-sm font-medium px-5 py-2.5 rounded-lg transition-all"
+          <button
+            onClick={() => handleLinkClick('kontakt')}
+            className="text-sm font-medium px-5 py-2.5 rounded-lg transition-all cursor-pointer outline-none"
             style={{
               background: '#1B3A6B',
               color: '#EDF2FA',
@@ -61,7 +74,7 @@ export function Navbar({ onNavigate }: NavbarProps) {
             }}
           >
             Anfrage senden
-          </a>
+          </button>
         </li>
       </ul>
 
@@ -91,23 +104,21 @@ export function Navbar({ onNavigate }: NavbarProps) {
           >
             <div className="flex flex-col p-6 gap-4">
               {links.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="text-base text-primary-100/70 hover:text-white transition-colors py-2"
-                  onClick={() => setIsOpen(false)}
+                <button
+                  key={link.id}
+                  onClick={() => handleLinkClick(link.id)}
+                  className="text-base text-left text-primary-100/70 hover:text-white transition-colors py-2 outline-none"
                 >
                   {link.label}
-                </a>
+                </button>
               ))}
-              <a
-                href="#kontakt"
-                className="text-base font-medium px-5 py-3 rounded-lg text-center mt-2 transition-all"
+              <button
+                onClick={() => handleLinkClick('kontakt')}
+                className="text-base font-medium px-5 py-3 rounded-lg text-center mt-2 transition-all outline-none"
                 style={{ background: '#1B3A6B', color: '#EDF2FA' }}
-                onClick={() => setIsOpen(false)}
               >
                 Anfrage senden
-              </a>
+              </button>
             </div>
           </motion.div>
         )}
