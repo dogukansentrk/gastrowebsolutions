@@ -18,7 +18,7 @@ export function Footer({ onNavigate }: FooterProps) {
           onClick={() => onNavigate('home')}
           className="outline-none cursor-pointer" 
         >
-          <img src="/logo.png" alt="GastroWeb Solutions Logo" className="h-12 w-auto object-contain" />
+          <img src="/logo.png" alt="GastroWeb Solutions Logo" className="h-[4.5rem] md:h-20 w-auto object-contain" />
         </button>
         <div className="flex items-center gap-6 text-xs font-light" style={{ color: 'rgba(232,237,245,0.4)' }}>
           <button onClick={() => onNavigate('impressum')} className="hover:text-white transition-colors cursor-pointer outline-none">

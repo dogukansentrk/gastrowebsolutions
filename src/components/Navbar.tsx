@@ -43,7 +43,7 @@ export function Navbar({ onNavigate }: NavbarProps) {
         }}
         className="outline-none cursor-pointer flex items-center hover:opacity-90 transition-opacity"
       >
-        <img src="/logo.png" alt="GastroWeb Solutions Logo" className="h-10 w-auto object-contain" />
+        <img src="/logo.png" alt="GastroWeb Solutions Logo" className="h-16 w-auto object-contain" />
       </button>
 
       {/* Desktop links */}
