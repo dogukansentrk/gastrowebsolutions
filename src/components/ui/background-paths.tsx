@@ -2,56 +2,49 @@
 
 import { motion } from "framer-motion";
 
-function FloatingOrbs() {
+function FloatingPaths({ position }: { position: number }) {
+    // Restoring the original beautiful 36 paths but making them performant
+    const paths = Array.from({ length: 36 }, (_, i) => ({
+        id: i,
+        d: `M-${380 - i * 5 * position} -${189 + i * 6}C-${
+            380 - i * 5 * position
+        } -${189 + i * 6} -${312 - i * 5 * position} ${216 - i * 6} ${
+            152 - i * 5 * position
+        } ${343 - i * 6}C${616 - i * 5 * position} ${470 - i * 6} ${
+            684 - i * 5 * position
+        } ${875 - i * 6} ${684 - i * 5 * position} ${875 - i * 6}`,
+        color: `rgba(232,237,245,${0.03 + i * 0.01})`,
+        width: 0.5 + i * 0.03,
+    }));
+
     return (
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            {/* Primary Blue Orb */}
-            <motion.div
-                animate={{
-                    x: [0, 40, -20, 0],
-                    y: [0, -30, 40, 0],
-                    scale: [1, 1.1, 0.9, 1],
-                }}
-                transition={{
-                    duration: 15,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                }}
-                className="absolute top-1/4 left-1/4 w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] rounded-full mix-blend-screen filter blur-[80px] md:blur-[120px] opacity-40"
-                style={{ background: '#3E6FB5' }}
-            />
-            {/* Deep Blue Orb */}
-            <motion.div
-                animate={{
-                    x: [0, -30, 20, 0],
-                    y: [0, 40, -20, 0],
-                    scale: [1, 0.9, 1.1, 1],
-                }}
-                transition={{
-                    duration: 18,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 2,
-                }}
-                className="absolute bottom-1/4 right-1/4 w-[50vw] h-[50vw] max-w-[600px] max-h-[600px] rounded-full mix-blend-screen filter blur-[100px] md:blur-[140px] opacity-30"
-                style={{ background: '#1B3A6B' }}
-            />
-            {/* Secondary Accent Orb */}
-            <motion.div
-                animate={{
-                    x: [0, 20, -10, 0],
-                    y: [0, -20, 10, 0],
-                    scale: [1, 1.05, 0.95, 1],
-                }}
-                transition={{
-                    duration: 12,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 1,
-                }}
-                className="absolute top-1/3 right-1/3 w-[30vw] h-[30vw] max-w-[400px] max-h-[400px] rounded-full mix-blend-screen filter blur-[60px] md:blur-[100px] opacity-20"
-                style={{ background: '#D0DFF5' }}
-            />
+        <div className="absolute inset-0 pointer-events-none">
+            <svg
+                className="w-full h-full text-primary-100"
+                viewBox="0 0 696 316"
+                fill="none"
+            >
+                <title>Background Paths</title>
+                {paths.map((path) => (
+                    <motion.path
+                        key={path.id}
+                        d={path.d}
+                        stroke="currentColor"
+                        strokeWidth={path.width}
+                        strokeOpacity={0.1 + path.id * 0.01}
+                        initial={{ opacity: 0.3 }}
+                        animate={{
+                            opacity: [0.2, 0.5, 0.2],
+                        }}
+                        transition={{
+                            duration: 10 + Math.random() * 5,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                        }}
+                        style={{ willChange: "opacity" }}
+                    />
+                ))}
+            </svg>
         </div>
     );
 }
@@ -68,17 +61,10 @@ export function BackgroundPaths({
     return (
         <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden"
             style={{ background: 'linear-gradient(135deg, #0A1628 0%, #0E1E38 40%, #1B3A6B 100%)' }}>
-            
-            <FloatingOrbs />
-
-            {/* Subtle grid overlay to give it a tech/premium feel while being very lightweight */}
-            <div 
-              className="absolute inset-0 pointer-events-none opacity-[0.03]"
-              style={{
-                backgroundImage: `linear-gradient(rgba(232, 237, 245, 1) 1px, transparent 1px), linear-gradient(90deg, rgba(232, 237, 245, 1) 1px, transparent 1px)`,
-                backgroundSize: '40px 40px'
-              }}
-            />
+            <div className="absolute inset-0">
+                <FloatingPaths position={1} />
+                <FloatingPaths position={-1} />
+            </div>
 
             <div className="relative z-10 container mx-auto px-4 md:px-6 text-center mt-12 md:mt-20">
                 <motion.div
@@ -96,7 +82,7 @@ export function BackgroundPaths({
                         <motion.p
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.5, duration: 0.8 }}
+                            transition={{ delay: 0.3, duration: 0.8 }}
                             className="text-lg md:text-xl text-primary-100/60 max-w-xl mx-auto mb-10 font-light leading-relaxed"
                         >
                             {subtitle}
@@ -107,7 +93,7 @@ export function BackgroundPaths({
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.8, duration: 0.8 }}
+                            transition={{ delay: 0.6, duration: 0.8 }}
                             className="inline-block"
                         >
                             <a
