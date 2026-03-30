@@ -41,9 +41,9 @@ export function Navbar({ onNavigate }: NavbarProps) {
           onNavigate('home');
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }}
-        className="font-display text-xl font-bold text-primary-100 outline-none cursor-pointer"
+        className="outline-none cursor-pointer flex items-center hover:opacity-90 transition-opacity"
       >
-        Gastro<span className="text-white">Web</span> Solutions
+        <img src="/logo.png" alt="GastroWeb Solutions Logo" className="h-10 w-auto object-contain" />
       </button>
 
       {/* Desktop links */}
