@@ -1,20 +1,23 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 
 function FloatingPaths({ position }: { position: number }) {
-    const paths = Array.from({ length: 36 }, (_, i) => ({
+    // Reduced from 36 to 12 paths for much better performance
+    const paths = Array.from({ length: 12 }, (_, i) => ({
         id: i,
-        d: `M-${380 - i * 5 * position} -${189 + i * 6}C-${
-            380 - i * 5 * position
-        } -${189 + i * 6} -${312 - i * 5 * position} ${216 - i * 6} ${
-            152 - i * 5 * position
-        } ${343 - i * 6}C${616 - i * 5 * position} ${470 - i * 6} ${
-            684 - i * 5 * position
-        } ${875 - i * 6} ${684 - i * 5 * position} ${875 - i * 6}`,
-        color: `rgba(27,58,107,${0.1 + i * 0.03})`,
-        width: 0.5 + i * 0.03,
+        d: `M-${380 - i * 15 * position} -${189 + i * 18}C-${
+            380 - i * 15 * position
+        } -${189 + i * 18} -${312 - i * 15 * position} ${216 - i * 18} ${
+            152 - i * 15 * position
+        } ${343 - i * 18}C${616 - i * 15 * position} ${470 - i * 18} ${
+            684 - i * 15 * position
+        } ${875 - i * 18} ${684 - i * 15 * position} ${875 - i * 18}`,
+        opacity: 0.1 + i * 0.06,
+        width: 0.5 + i * 0.08,
+        // Stagger the animation delay for a natural wave effect
+        delay: i * 0.8,
+        duration: 25 + i * 3,
     }));
 
     return (
@@ -26,22 +29,16 @@ function FloatingPaths({ position }: { position: number }) {
             >
                 <title>Background Paths</title>
                 {paths.map((path) => (
-                    <motion.path
+                    <path
                         key={path.id}
                         d={path.d}
                         stroke="currentColor"
                         strokeWidth={path.width}
-                        strokeOpacity={0.1 + path.id * 0.03}
-                        initial={{ pathLength: 0.3, opacity: 0.6 }}
-                        animate={{
-                            pathLength: 1,
-                            opacity: [0.3, 0.6, 0.3],
-                            pathOffset: [0, 1, 0],
-                        }}
-                        transition={{
-                            duration: 20 + Math.random() * 10,
-                            repeat: Number.POSITIVE_INFINITY,
-                            ease: "linear",
+                        strokeOpacity={path.opacity}
+                        className="animate-path-flow"
+                        style={{
+                            animationDelay: `${path.delay}s`,
+                            animationDuration: `${path.duration}s`,
                         }}
                     />
                 ))}
@@ -59,8 +56,6 @@ export function BackgroundPaths({
     subtitle?: string;
     children?: React.ReactNode;
 }) {
-    const words = title.split(" ");
-
     return (
         <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden"
             style={{ background: 'linear-gradient(135deg, #0A1628 0%, #0E1E38 40%, #1B3A6B 100%)' }}>
@@ -71,45 +66,21 @@ export function BackgroundPaths({
 
             <div className="relative z-10 container mx-auto px-4 md:px-6 text-center">
                 <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 2 }}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1, ease: "easeOut" }}
                     className="max-w-4xl mx-auto"
                 >
-                    <h1 className="text-5xl sm:text-7xl md:text-8xl font-bold mb-8 tracking-tighter font-display">
-                        {words.map((word, wordIndex) => (
-                            <span
-                                key={wordIndex}
-                                className="inline-block mr-4 last:mr-0"
-                            >
-                                {word.split("").map((letter, letterIndex) => (
-                                    <motion.span
-                                        key={`${wordIndex}-${letterIndex}`}
-                                        initial={{ y: 100, opacity: 0 }}
-                                        animate={{ y: 0, opacity: 1 }}
-                                        transition={{
-                                            delay:
-                                                wordIndex * 0.1 +
-                                                letterIndex * 0.03,
-                                            type: "spring",
-                                            stiffness: 150,
-                                            damping: 25,
-                                        }}
-                                        className="inline-block text-transparent bg-clip-text 
-                                        bg-gradient-to-r from-white to-primary-100"
-                                    >
-                                        {letter}
-                                    </motion.span>
-                                ))}
-                            </span>
-                        ))}
+                    <h1 className="text-5xl sm:text-7xl md:text-8xl font-bold mb-8 tracking-tighter font-display
+                        text-transparent bg-clip-text bg-gradient-to-r from-white to-primary-100">
+                        {title}
                     </h1>
 
                     {subtitle && (
                         <motion.p
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 1, duration: 0.8 }}
+                            transition={{ delay: 0.5, duration: 0.8 }}
                             className="text-lg md:text-xl text-primary-100/60 max-w-xl mx-auto mb-10 font-light"
                         >
                             {subtitle}
@@ -120,29 +91,16 @@ export function BackgroundPaths({
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 1.2, duration: 0.8 }}
-                            className="inline-block group relative bg-gradient-to-b from-primary-400/20 to-white/10 
-                            p-px rounded-2xl backdrop-blur-lg 
-                            overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+                            transition={{ delay: 0.8, duration: 0.8 }}
+                            className="inline-block"
                         >
-                            <Button
-                                variant="ghost"
-                                className="rounded-[1.15rem] px-8 py-6 text-lg font-semibold backdrop-blur-md 
-                                bg-primary-800/95 hover:bg-primary-800/100 
-                                text-white transition-all duration-300 
-                                group-hover:-translate-y-0.5 border border-white/10
-                                hover:shadow-md"
+                            <a
+                                href="#pakete"
+                                className="px-8 py-4 rounded-xl text-base font-semibold transition-all duration-300 hover:-translate-y-0.5"
+                                style={{ background: '#1B3A6B', color: '#EDF2FA', border: '1px solid rgba(208,223,245,0.2)' }}
                             >
-                                <span className="opacity-90 group-hover:opacity-100 transition-opacity">
-                                    Mehr erfahren
-                                </span>
-                                <span
-                                    className="ml-3 opacity-70 group-hover:opacity-100 group-hover:translate-x-1.5 
-                                    transition-all duration-300"
-                                >
-                                    &rarr;
-                                </span>
-                            </Button>
+                                Mehr erfahren &rarr;
+                            </a>
                         </motion.div>
                     )}
                 </motion.div>

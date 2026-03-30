@@ -8,9 +8,15 @@ export function CookieBanner() {
     // Check if the user has already made a choice
     const consent = localStorage.getItem('gastroweb_cookie_consent');
     if (!consent) {
-      // Small delay so it animates in nicely after page load
-      const timer = setTimeout(() => setIsVisible(true), 1500);
-      return () => clearTimeout(timer);
+      // Use requestAnimationFrame to ensure DOM is ready, then show after a short delay
+      const raf = requestAnimationFrame(() => {
+        const timer = setTimeout(() => setIsVisible(true), 800);
+        (window as any).__cookieTimer = timer;
+      });
+      return () => {
+        cancelAnimationFrame(raf);
+        clearTimeout((window as any).__cookieTimer);
+      };
     }
   }, []);
 
