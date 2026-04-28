@@ -15,6 +15,13 @@ const teamMembers = [
     school: 'HAK Wörgl – 3. Klasse – Abteilung Business',
     desc: 'Beqir bringt betriebswirtschaftliches Denken und Verhandlungsgeschick mit. Er kümmert sich um Kundenkontakt, Angebote und die strategische Weiterentwicklung des Unternehmens.',
   },
+  {
+    initials: 'AM',
+    name: 'Adrijan Marinovic',
+    role: 'Neuzugang – Kundenbeziehungen & Business',
+    school: 'HAK Wörgl – 3. Klasse – Abteilung Business',
+    desc: 'Adrijan verstärkt das Team im Bereich Kundenbeziehungen und Business. Er unterstützt bei der Kundenbetreuung, Projektplanung und sorgt für reibungslose Abläufe.',
+  },
 ];
 
 export function Team() {
@@ -31,15 +38,15 @@ export function Team() {
             Wer steckt dahinter
           </span>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-4 mb-5 leading-tight">
-            Zwei Schüler.<br />Eine Vision.
+            Drei Schüler.<br />Eine Vision.
           </h2>
           <div className="w-12 h-0.5 rounded-full mb-8" style={{ background: '#1B3A6B' }} />
           <p className="text-base max-w-xl leading-relaxed font-light" style={{ color: 'rgba(232,237,245,0.55)' }}>
-            GastroWeb Solutions wurde von zwei Schülern aus der Region gegründet – mit echtem Know-how aus Wirtschaft und Technik.
+            GastroWeb Solutions wurde von Schülern aus der Region gegründet – mit echtem Know-how aus Wirtschaft und Technik.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
           {teamMembers.map((member, i) => (
             <motion.div
               key={member.name}

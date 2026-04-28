@@ -11,7 +11,7 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 0.8 }}
+          transition={{ delay: 0.1, duration: 0.5 }}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-2"
         >
           <a
@@ -47,7 +47,7 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.8, duration: 1 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
           className="flex flex-wrap justify-center gap-12 sm:gap-16 mt-16 pt-12"
           style={{ borderTop: '1px solid rgba(232,237,245,0.08)' }}
         >
