@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
@@ -6,15 +6,36 @@ interface NavbarProps {
   onNavigate: (page: 'home' | 'impressum' | 'datenschutz') => void;
 }
 
+const links = [
+  { id: 'ueber-uns', label: 'Über uns' },
+  { id: 'warum', label: 'Warum wir' },
+  { id: 'pakete', label: 'Pakete' },
+  { id: 'team', label: 'Team' },
+];
+
+const allSectionIds = ['hero', 'ueber-uns', 'warum', 'portfolio', 'pakete', 'integrationen', 'team', 'testimonials', 'termin', 'faq', 'kontakt'];
+
 export function Navbar({ onNavigate }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>('hero');
 
-  const links = [
-    { id: 'ueber-uns', label: 'Über uns' },
-    { id: 'warum', label: 'Warum wir' },
-    { id: 'pakete', label: 'Pakete' },
-    { id: 'team', label: 'Team' },
-  ];
+  // Scroll spy: determine which section is currently in view
+  const handleScroll = useCallback(() => {
+    const scrollPosition = window.scrollY + 120; // offset for navbar height
+
+    for (let i = allSectionIds.length - 1; i >= 0; i--) {
+      const section = document.getElementById(allSectionIds[i]);
+      if (section && section.offsetTop <= scrollPosition) {
+        setActiveSection(allSectionIds[i]);
+        break;
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [handleScroll]);
 
   const handleLinkClick = (id: string) => {
     setIsOpen(false);
@@ -27,6 +48,8 @@ export function Navbar({ onNavigate }: NavbarProps) {
       }
     }, 100);
   };
+
+  const isLinkActive = (linkId: string) => activeSection === linkId;
 
   return (
     <nav className="fixed top-0 w-full z-50 px-6 md:px-12 py-4 flex items-center justify-between"
@@ -52,9 +75,21 @@ export function Navbar({ onNavigate }: NavbarProps) {
           <li key={link.id}>
             <button
               onClick={() => handleLinkClick(link.id)}
-              className="text-sm text-primary-100/65 hover:text-white transition-colors font-normal tracking-wide cursor-pointer outline-none"
+              className="text-sm transition-colors font-normal tracking-wide cursor-pointer outline-none relative"
+              style={{
+                color: isLinkActive(link.id) ? '#ffffff' : 'rgba(208,223,245,0.65)',
+              }}
             >
               {link.label}
+              {/* Active indicator dot */}
+              {isLinkActive(link.id) && (
+                <motion.div
+                  layoutId="nav-indicator"
+                  className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full"
+                  style={{ background: '#3E6FB5' }}
+                  transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                />
+              )}
             </button>
           </li>
         ))}
@@ -107,8 +142,14 @@ export function Navbar({ onNavigate }: NavbarProps) {
                 <button
                   key={link.id}
                   onClick={() => handleLinkClick(link.id)}
-                  className="text-base text-left text-primary-100/70 hover:text-white transition-colors py-2 outline-none"
+                  className="text-base text-left transition-colors py-2 outline-none flex items-center gap-2"
+                  style={{
+                    color: isLinkActive(link.id) ? '#ffffff' : 'rgba(208,223,245,0.7)',
+                  }}
                 >
+                  {isLinkActive(link.id) && (
+                    <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: '#3E6FB5' }} />
+                  )}
                   {link.label}
                 </button>
               ))}

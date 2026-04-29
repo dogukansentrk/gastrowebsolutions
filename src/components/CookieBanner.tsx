@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-export function CookieBanner() {
+interface CookieBannerProps {
+  onNavigate: (page: 'home' | 'impressum' | 'datenschutz') => void;
+}
+
+export function CookieBanner({ onNavigate }: CookieBannerProps) {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -40,6 +44,12 @@ export function CookieBanner() {
     setIsVisible(false);
   };
 
+  const handleDatenschutzClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsVisible(false);
+    onNavigate('datenschutz');
+  };
+
   return (
     <AnimatePresence>
       {isVisible && (
@@ -60,7 +70,7 @@ export function CookieBanner() {
           >
             <div className="flex-1 text-sm md:text-base font-light leading-relaxed" style={{ color: 'rgba(232, 237, 245, 0.8)' }}>
               <strong className="block text-white font-medium text-lg mb-2">Wir respektieren Ihre Privatsphäre</strong>
-              Um unsere Webseite für Sie optimal zu gestalten und fortlaufend verbessern zu können, sowie für Marketingzwecke (um zu verstehen, wonach Gastronomen suchen), verwenden wir Cookies. Durch Klick auf "Alle akzeptieren" stimmen Sie der Verwendung von Cookies zu Analyse- und Marketingzwecken zu. Weitere Informationen finden Sie in unserer <a href="#" className="underline hover:text-white transition-colors" style={{ color: '#3E6FB5' }}>Datenschutzerklärung</a>.
+              Um unsere Webseite für Sie optimal zu gestalten und fortlaufend verbessern zu können, sowie für Marketingzwecke (um zu verstehen, wonach Gastronomen suchen), verwenden wir Cookies. Durch Klick auf "Alle akzeptieren" stimmen Sie der Verwendung von Cookies zu Analyse- und Marketingzwecken zu. Weitere Informationen finden Sie in unserer <button onClick={handleDatenschutzClick} className="underline hover:text-white transition-colors cursor-pointer outline-none" style={{ color: '#3E6FB5', background: 'none', border: 'none', padding: 0, font: 'inherit' }}>Datenschutzerklärung</button>.
             </div>
             <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto flex-shrink-0">
               <button

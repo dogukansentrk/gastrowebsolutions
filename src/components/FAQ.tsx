@@ -17,7 +17,7 @@ const faqs = [
   },
   {
     question: 'Warum seid ihr günstiger als große Werbeagenturen?',
-    answer: 'Als lokales Zwei-Mann-Team (Schüler-Startup) haben wir keine teuren Büromieten oder großen Overhead-Kosten. Wir fokussieren uns zu 100 % auf die Gastronomie und haben effiziente Prozesse entwickelt, um maximale Qualität zu einem fairen Preis zu liefern.'
+    answer: 'Als lokales Drei-Mann-Team (Schüler-Startup) haben wir keine teuren Büromieten oder großen Overhead-Kosten. Wir fokussieren uns zu 100 % auf die Gastronomie und haben effiziente Prozesse entwickelt, um maximale Qualität zu einem fairen Preis zu liefern.'
   }
 ];
 
