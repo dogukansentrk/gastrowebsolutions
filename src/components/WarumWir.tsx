@@ -1,26 +1,34 @@
 import { motion } from 'framer-motion';
-import { UtensilsCrossed, Smartphone, Zap, Handshake } from 'lucide-react';
+import { Smartphone, Zap, MessageCircle, Search } from 'lucide-react';
 
 const features = [
   {
-    icon: UtensilsCrossed,
-    title: 'Gastro-Spezialisierung',
-    desc: 'Wir kennen die Bedürfnisse der Gastronomie: Speisekarte, Öffnungszeiten, Kontaktdaten – alles, was Ihre Gäste brauchen.',
-  },
-  {
     icon: Smartphone,
-    title: 'Mobile-First Design',
-    desc: 'Über 70 % der Suchen erfolgen per Smartphone. Ihre Seite ist auf jedem Gerät perfekt – von iPhone bis Android.',
+    title: 'Perfekt auf dem Handy',
+    desc: '80 % deiner Kunden suchen per Smartphone. Deine Website sieht auf jedem Gerät perfekt aus – garantiert.',
+    stat: '80%',
+    statLabel: 'Mobile Suchen',
   },
   {
     icon: Zap,
-    title: 'Schnelle Umsetzung',
-    desc: 'In 1–2 Wochen ist Ihre Webseite live. Keine langen Wartezeiten, kein Bürokratie-Dschungel.',
+    title: 'In 1–2 Wochen live',
+    desc: 'Keine monatelangen Wartezeiten. Wir bauen deine Website schnell, damit du schneller Kunden gewinnst.',
+    stat: '14',
+    statLabel: 'Tage max.',
   },
   {
-    icon: Handshake,
-    title: 'Persönlicher Service',
-    desc: 'Kein anonymer Online-Service. Wir kommen zu Ihnen, kennen die Region und verstehen Ihren Betrieb.',
+    icon: MessageCircle,
+    title: 'Änderungen per WhatsApp',
+    desc: 'Neue Speisekarte? Geänderte Öffnungszeiten? Eine kurze Nachricht an uns genügt – wir erledigen den Rest.',
+    stat: '24h',
+    statLabel: 'Reaktionszeit',
+  },
+  {
+    icon: Search,
+    title: 'Bei Google ganz oben',
+    desc: 'Wir optimieren deine Website und richten Google Business ein, damit lokale Kunden dich sofort finden.',
+    stat: '#1',
+    statLabel: 'Lokale Suche',
   },
 ];
 
@@ -35,14 +43,14 @@ export function WarumWir() {
           transition={{ duration: 0.6 }}
         >
           <span className="text-xs font-medium tracking-[2px] uppercase" style={{ color: '#3E6FB5' }}>
-            Warum GastroWeb Solutions
+            Was du bekommst
           </span>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-4 mb-5 leading-tight">
-            Mehr Gäste beginnen<br />mit Google.
+            Konkrete Ergebnisse.<br />Kein Gelaber.
           </h2>
           <div className="w-12 h-0.5 rounded-full mb-8" style={{ background: '#1B3A6B' }} />
           <p className="text-base max-w-xl leading-relaxed font-light" style={{ color: 'rgba(232,237,245,0.55)' }}>
-            Über 80 % der Restaurantgäste suchen online, bevor sie einen Tisch auswählen. Ohne professionelle Webseite verlieren Sie täglich potenzielle Kunden.
+            Jede Website, die wir bauen, hat ein Ziel: dir mehr Kunden zu bringen. Hier ist, was du konkret erwarten kannst.
           </p>
         </motion.div>
 
@@ -55,7 +63,7 @@ export function WarumWir() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="p-8 md:p-10 transition-colors"
+              className="p-8 md:p-10 transition-all duration-300 group relative overflow-hidden"
               style={{ background: 'rgba(14,30,56,0.8)' }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.background = 'rgba(27,58,107,0.3)';
@@ -64,15 +72,31 @@ export function WarumWir() {
                 e.currentTarget.style.background = 'rgba(14,30,56,0.8)';
               }}
             >
-              <feature.icon
-                size={28}
-                className="mb-4"
+              {/* Stat number in background */}
+              <div 
+                className="absolute -right-2 -top-4 font-display text-[5rem] md:text-[6rem] font-bold leading-none pointer-events-none select-none transition-opacity duration-300 opacity-[0.04] group-hover:opacity-[0.08]"
                 style={{ color: '#3E6FB5' }}
-              />
-              <h3 className="text-lg font-medium text-white mb-2">{feature.title}</h3>
-              <p className="text-sm leading-relaxed font-light" style={{ color: 'rgba(232,237,245,0.5)' }}>
-                {feature.desc}
-              </p>
+              >
+                {feature.stat}
+              </div>
+
+              <div className="relative z-10">
+                <div className="flex items-center gap-3 mb-4">
+                  <feature.icon
+                    size={24}
+                    style={{ color: '#3E6FB5' }}
+                  />
+                  <span className="text-[10px] font-medium tracking-wide uppercase px-2 py-1 rounded-full"
+                    style={{ background: 'rgba(27,58,107,0.2)', color: '#3E6FB5' }}
+                  >
+                    {feature.statLabel}
+                  </span>
+                </div>
+                <h3 className="text-lg font-medium text-white mb-2">{feature.title}</h3>
+                <p className="text-sm leading-relaxed font-light" style={{ color: 'rgba(232,237,245,0.5)' }}>
+                  {feature.desc}
+                </p>
+              </div>
             </motion.div>
           ))}
         </div>
@@ -86,7 +110,6 @@ export function WarumWir() {
           className="mt-px p-8 md:p-10 rounded-b-2xl flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-12"
           style={{
             background: 'rgba(27,58,107,0.1)',
-            borderTop: '1px solid rgba(27,58,107,0.25)',
             border: '1px solid rgba(232,237,245,0.06)',
             borderTopColor: 'rgba(27,58,107,0.25)',
           }}
@@ -95,9 +118,9 @@ export function WarumWir() {
             60.000+
           </div>
           <div>
-            <h3 className="text-lg font-medium text-white mb-2">Gastronomiebetriebe in Österreich</h3>
+            <h3 className="text-lg font-medium text-white mb-2">Betriebe in Österreich ohne professionelle Website</h3>
             <p className="text-sm leading-relaxed font-light" style={{ color: 'rgba(232,237,245,0.5)' }}>
-              Ein Großteil verfügt über keine oder eine veraltete Webseite. Allein im Bezirk Kufstein haben hunderte Betriebe enormes Potenzial, das sie online nicht nutzen. Hier setzen wir an.
+              Ein Großteil der lokalen Unternehmen verfügt über keine oder eine veraltete Webseite. Allein im Bezirk Kufstein haben hunderte Betriebe enormes ungenutztes Potenzial online. Hier setzen wir an.
             </p>
           </div>
         </motion.div>

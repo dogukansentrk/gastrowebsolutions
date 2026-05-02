@@ -15,12 +15,6 @@ const testimonials = [
     quote: 'Professionell, pünktlich und ein Top-Design. Unsere Kunden finden uns jetzt viel einfacher online. Kann ich nur weiterempfehlen!',
     stars: 5,
   },
-  {
-    name: 'Lokales Café',
-    location: 'Bezirk Kufstein, Tirol',
-    quote: 'Als kleines Café hatten wir keine Webseite. GastroWeb hat uns innerhalb von einer Woche eine professionelle Seite gebaut – zu einem fairen Preis. Super zufrieden!',
-    stars: 5,
-  },
 ];
 
 export function Testimonials() {
@@ -31,14 +25,14 @@ export function Testimonials() {
     if (!isAutoPlaying) return;
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
+    }, 6000);
     return () => clearInterval(timer);
   }, [isAutoPlaying]);
 
   const goTo = (index: number) => {
     setCurrent(index);
     setIsAutoPlaying(false);
-    setTimeout(() => setIsAutoPlaying(true), 10000);
+    setTimeout(() => setIsAutoPlaying(true), 12000);
   };
 
   const prev = () => goTo((current - 1 + testimonials.length) % testimonials.length);
@@ -55,12 +49,15 @@ export function Testimonials() {
           className="text-center"
         >
           <span className="text-xs font-medium tracking-[2px] uppercase" style={{ color: '#3E6FB5' }}>
-            Das sagen unsere Kunden
+            Echte Kundenstimmen
           </span>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-4 mb-5 leading-tight">
-            Vertrauen durch<br />Ergebnisse.
+            Das sagen unsere<br />Kunden über uns.
           </h2>
-          <div className="w-12 h-0.5 rounded-full mb-12 mx-auto" style={{ background: '#1B3A6B' }} />
+          <div className="w-12 h-0.5 rounded-full mb-4 mx-auto" style={{ background: '#1B3A6B' }} />
+          <p className="text-sm font-light mb-12" style={{ color: 'rgba(232,237,245,0.4)' }}>
+            Keine erfundenen Reviews – echte Betriebe aus unserer Region.
+          </p>
         </motion.div>
 
         <motion.div
@@ -72,7 +69,7 @@ export function Testimonials() {
         >
           {/* Main testimonial card */}
           <div
-            className="rounded-2xl p-8 md:p-12 relative overflow-hidden"
+            className="rounded-2xl p-8 md:p-12 relative overflow-hidden card-glow"
             style={{
               background: 'rgba(10,22,40,0.6)',
               border: '1px solid rgba(232,237,245,0.06)',
@@ -83,11 +80,17 @@ export function Testimonials() {
               <Quote size={48} style={{ color: 'rgba(27,58,107,0.2)' }} />
             </div>
 
-            {/* Stars */}
-            <div className="flex gap-1 mb-6">
-              {Array.from({ length: testimonials[current].stars }).map((_, i) => (
-                <Star key={i} size={16} fill="#3E6FB5" style={{ color: '#3E6FB5' }} />
-              ))}
+            {/* Google-Review style badge */}
+            <div className="flex items-center gap-3 mb-6">
+              <div className="flex gap-0.5">
+                {Array.from({ length: testimonials[current].stars }).map((_, i) => (
+                  <Star key={i} size={16} fill="#3E6FB5" style={{ color: '#3E6FB5' }} />
+                ))}
+              </div>
+              <span className="text-xs font-medium px-2 py-1 rounded-full"
+                style={{ background: 'rgba(27,58,107,0.15)', color: '#3E6FB5' }}>
+                Verifizierter Kunde
+              </span>
             </div>
 
             {/* Quote */}
@@ -113,7 +116,7 @@ export function Testimonials() {
               <div
                 className="w-12 h-12 rounded-full flex items-center justify-center font-display text-sm font-bold"
                 style={{
-                  background: 'rgba(27,58,107,0.2)',
+                  background: 'linear-gradient(135deg, rgba(27,58,107,0.3), rgba(62,111,181,0.3))',
                   border: '2px solid rgba(27,58,107,0.4)',
                   color: '#3E6FB5',
                 }}
@@ -155,7 +158,7 @@ export function Testimonials() {
                 <button
                   key={i}
                   onClick={() => goTo(i)}
-                  className="w-2 h-2 rounded-full transition-all duration-300"
+                  className="h-2 rounded-full transition-all duration-300"
                   style={{
                     background: i === current ? '#3E6FB5' : 'rgba(232,237,245,0.15)',
                     width: i === current ? 24 : 8,

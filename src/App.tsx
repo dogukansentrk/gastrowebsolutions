@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
 import { Navbar } from '@/components/Navbar';
 import { Hero } from '@/components/Hero';
-import { UberUns } from '@/components/UberUns';
+import { SocialProof } from '@/components/SocialProof';
 import { WarumWir } from '@/components/WarumWir';
 import { Portfolio } from '@/components/Portfolio';
+import { Testimonials } from '@/components/Testimonials';
 import { Pakete } from '@/components/Pakete';
+import { UberUns } from '@/components/UberUns';
 import { Integrationen } from '@/components/Integrationen';
 import { Team } from '@/components/Team';
-import { Testimonials } from '@/components/Testimonials';
 import { TerminBuchung } from '@/components/TerminBuchung';
 import { FAQ } from '@/components/FAQ';
 import { Kontakt } from '@/components/Kontakt';
@@ -20,7 +21,7 @@ import { ScrollToTop } from '@/components/ScrollToTop';
 type Page = 'home' | 'impressum' | 'datenschutz';
 
 const pageTitles: Record<Page, string> = {
-  home: 'GastroWeb Solutions – Webdesign für die Gastronomie in Tirol',
+  home: 'GastroWeb Solutions – Webdesign für lokale Betriebe in Tirol',
   impressum: 'Impressum | GastroWeb Solutions',
   datenschutz: 'Datenschutzerklärung | GastroWeb Solutions',
 };
@@ -39,16 +40,40 @@ function App() {
       
       {currentPage === 'home' && (
         <>
+          {/* 1. Killer-Headline + Trust signals */}
           <Hero />
-          <UberUns />
+          
+          {/* 2. Social Proof – sofort Vertrauen */}
+          <SocialProof />
+          
+          {/* 3. Konkreter Nutzen – was bekommt der Kunde? */}
           <WarumWir />
+          
+          {/* 4. Beweis – echte Projekte */}
           <Portfolio />
-          <Pakete />
-          <Integrationen />
-          <Team />
+          
+          {/* 5. Kundenstimmen */}
           <Testimonials />
-          <TerminBuchung />
+          
+          {/* 6. Angebot – Pakete & Preise */}
+          <Pakete />
+          
+          {/* 7. Wer steckt dahinter? */}
+          <UberUns />
+          
+          {/* 8. Team mit Gesichtern */}
+          <Team />
+          
+          {/* 9. Was steckt alles drin */}
+          <Integrationen />
+          
+          {/* 10. FAQ */}
           <FAQ />
+          
+          {/* 11. Direkt erreichen */}
+          <TerminBuchung />
+          
+          {/* 12. Kontaktformular */}
           <Kontakt />
         </>
       )}

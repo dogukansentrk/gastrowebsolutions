@@ -1,21 +1,21 @@
 import { motion } from 'framer-motion';
-import { Target, Heart, Code2 } from 'lucide-react';
+import { Target, Code2, Heart } from 'lucide-react';
 
 const values = [
   {
     icon: Target,
-    title: '100% Gastro-Fokus',
-    description: 'Wir machen keine Webseiten für Anwälte oder Autohäuser. Unsere gesamte Expertise fließt in die Lösung der Probleme, die Restaurants und Cafés haben.'
+    title: 'Nur lokale Betriebe. Keine Konzerne.',
+    description: 'Wir arbeiten ausschließlich mit lokalen Unternehmen – Restaurants, Dienstleister, Handwerker. Wir kennen eure Herausforderungen, weil wir selbst aus der Region kommen.'
   },
   {
     icon: Code2,
-    title: 'Handgemachte Qualität',
-    description: 'Keine langsamen Baukästen. Wir programmieren jede Zeile Code von Hand, damit Ihre Seite pfeilschnell lädt und auf Google ganz oben steht.'
+    title: 'Kein Wix. Kein Jimdo. Handgecodet.',
+    description: 'Jede Website wird von Grund auf programmiert. Das Ergebnis: pfeilschnelle Ladezeiten, Top-Rankings bei Google und ein Design, das sich von der Masse abhebt.'
   },
   {
     icon: Heart,
-    title: 'Lokaler Partner',
-    description: 'Als Startup direkt aus dem Bezirk Kufstein sind wir greifbar. Bei uns gibt es keine anonymen Callcenter, sondern direkte WhatsApp-Betreuung.'
+    title: 'Wir kommen zu dir. Persönlich. Vor Ort.',
+    description: 'Kein anonymes Support-Ticket. Bei uns bekommst du einen direkten Ansprechpartner per WhatsApp – und wenn nötig, kommen wir auch vorbei.'
   }
 ];
 
@@ -23,7 +23,7 @@ export function UberUns() {
   return (
     <section id="ueber-uns" className="py-24 md:py-32 px-6 md:px-12 relative overflow-hidden" style={{ background: '#08111F' }}>
       
-      {/* Decorative background circle */}
+      {/* Decorative background */}
       <div 
         className="absolute -right-[20%] -top-[10%] w-[50%] h-[50%] rounded-full blur-[120px] pointer-events-none opacity-20"
         style={{ background: '#3E6FB5' }}
@@ -42,19 +42,19 @@ export function UberUns() {
             Über uns
           </span>
           <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
-            Wir verstehen<br />Ihre Branche.
+            Dein Betrieb ist großartig.<br />Online merkt's nur keiner.
           </h2>
           <div className="w-16 h-1 mb-8 rounded-full" style={{ background: '#1B3A6B' }} />
           
           <div className="space-y-6 text-base md:text-lg font-light leading-relaxed" style={{ color: 'rgba(232,237,245,0.7)' }}>
             <p>
-              GastroWeb Solutions entstand aus einer einfachen Beobachtung in unserer Heimat: Viele großartige Restaurants kochen fantastisch, haben aber einen Online-Auftritt aus dem Jahr 2010. Große Agenturen verlangen oft ein Vermögen, und bei billigen Baukästen sehen alle Seiten gleich aus.
+              Du machst einen fantastischen Job – ob im Restaurant, als Handwerker oder Dienstleister. Aber wenn Kunden nach dir googeln, finden sie entweder nichts oder eine veraltete Seite aus dem Jahr 2010.
             </p>
             <p>
-              Als junges Startup aus dem Bezirk Kufstein haben *Dogukan Sentürk* und *Beqir Morina* beschlossen, genau das zu ändern.
+              Genau hier setzen wir an. <strong className="font-medium text-white">Dogukan, Beqir und Adrijan</strong> – drei Gründer aus dem Bezirk Kufstein – bauen dir eine Website, die neue Kunden bringt. Nicht in 3 Monaten, sondern in 1–2 Wochen.
             </p>
-            <p>
-              Unsere Vision ist es, Tirols Gastronomie ins moderne digitale Zeitalter zu bringen – mit atemberaubendem Design, fairen Preisen und einer persönlichen Betreuung, die Sie so noch nie erlebt haben.
+            <p className="text-sm px-5 py-4 rounded-xl" style={{ background: 'rgba(27,58,107,0.15)', border: '1px solid rgba(27,58,107,0.25)', color: 'rgba(232,237,245,0.6)' }}>
+              💡 <strong className="font-medium text-white">Warum wir günstiger sind:</strong> Als Startup ohne teure Büromieten können wir Agentur-Qualität zu einem Bruchteil des Preises liefern.
             </p>
           </div>
         </motion.div>
@@ -68,18 +68,12 @@ export function UberUns() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.5, delay: index * 0.15 }}
-              className="p-8 rounded-2xl relative overflow-hidden group"
+              className="p-8 rounded-2xl relative overflow-hidden card-glow"
               style={{
                 background: 'rgba(14, 30, 56, 0.4)',
                 border: '1px solid rgba(232, 237, 245, 0.05)',
               }}
             >
-              <div 
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                style={{
-                  background: 'radial-gradient(circle at top right, rgba(62, 111, 181, 0.15), transparent 70%)'
-                }}
-              />
               <div 
                 className="w-12 h-12 rounded-xl flex items-center justify-center mb-6"
                 style={{ background: 'rgba(27, 58, 107, 0.3)' }}

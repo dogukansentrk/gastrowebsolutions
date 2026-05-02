@@ -58,7 +58,7 @@ export function Kontakt() {
             Kontakt aufnehmen
           </span>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-4 mb-5 leading-tight">
-            Bereit für Ihre<br />neue Webseite?
+            Bereit für deine<br />neue Website?
           </h2>
           <div className="w-12 h-0.5 rounded-full mb-8" style={{ background: '#1B3A6B' }} />
         </motion.div>
@@ -71,7 +71,7 @@ export function Kontakt() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h3 className="text-lg font-medium text-white mb-6">So erreichen Sie uns</h3>
+            <h3 className="text-lg font-medium text-white mb-6">So erreichst du uns</h3>
             <div className="flex flex-col gap-5">
               {contactDetails.map((detail) => (
                 <div key={detail.label} className="flex items-start gap-4">
@@ -89,8 +89,21 @@ export function Kontakt() {
               ))}
             </div>
             <p className="text-sm font-light leading-relaxed mt-8" style={{ color: 'rgba(232,237,245,0.4)' }}>
-              Wir beraten Sie gerne kostenlos und unverbindlich – per E-Mail, Telefon oder direkt bei Ihnen vor Ort im Betrieb.
+              Wir beraten dich gerne kostenlos und unverbindlich – per E-Mail, Telefon oder direkt bei dir vor Ort.
             </p>
+
+            {/* Trust signal */}
+            <div
+              className="mt-6 px-5 py-4 rounded-xl"
+              style={{
+                background: 'rgba(27,58,107,0.1)',
+                border: '1px solid rgba(27,58,107,0.2)',
+              }}
+            >
+              <p className="text-sm font-light" style={{ color: 'rgba(232,237,245,0.5)' }}>
+                💬 <strong className="font-medium text-white">100% unverbindlich.</strong> Keine Verpflichtungen, kein Kleingedrucktes. Wir freuen uns auf deine Nachricht.
+              </p>
+            </div>
           </motion.div>
 
           {/* Contact form */}
@@ -109,7 +122,7 @@ export function Kontakt() {
               <input
                 type="text"
                 name="Name"
-                placeholder="Ihr Name"
+                placeholder="Dein Name"
                 required
                 className="w-full rounded-lg px-4 py-3 text-sm font-light outline-none transition-colors"
                 style={{
@@ -122,8 +135,8 @@ export function Kontakt() {
               />
               <input
                 type="text"
-                name="Restaurant/Betrieb"
-                placeholder="Restaurant / Betrieb"
+                name="Betrieb"
+                placeholder="Dein Betrieb / Unternehmen"
                 className="w-full rounded-lg px-4 py-3 text-sm font-light outline-none transition-colors"
                 style={{
                   background: '#0E1E38',
@@ -174,13 +187,13 @@ export function Kontakt() {
               onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(232,237,245,0.1)'; }}
             >
               <option value="" disabled>Paket auswählen</option>
-              <option value="Web Basic">Web Basic – einmalige Webseite</option>
-              <option value="Web + Hosting">Web + Hosting – Rundum-sorglos-Paket</option>
+              <option value="Starter">Starter – einmalige Website (ab 349 €)</option>
+              <option value="Rundum-sorglos">Rundum-sorglos – inkl. Hosting (ab 349 € + 29 €/Mo)</option>
               <option value="Noch unsicher">Noch unsicher – Beratung gewünscht</option>
             </select>
             <textarea
               name="Nachricht"
-              placeholder="Erzählen Sie uns kurz von Ihrem Betrieb und was Sie sich wünschen..."
+              placeholder="Erzähl uns kurz von deinem Betrieb und was du dir wünschst..."
               rows={5}
               required
               className="w-full rounded-lg px-4 py-3 text-sm font-light outline-none resize-vertical transition-colors"
@@ -208,7 +221,7 @@ export function Kontakt() {
                 if (formStatus === 'idle') e.currentTarget.style.background = '#1B3A6B';
               }}
             >
-              {formStatus === 'idle' && 'Anfrage absenden'}
+              {formStatus === 'idle' && 'Kostenlos anfragen'}
               {formStatus === 'submitting' && (
                 <span className="flex items-center justify-center gap-2">
                   <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
@@ -224,7 +237,7 @@ export function Kontakt() {
             
             {formStatus === 'success' && (
               <p className="text-center text-xs mt-2" style={{ color: '#a7f3d0' }}>
-                Wir haben Ihre Anfrage erhalten und melden uns in Kürze!
+                Wir haben deine Anfrage erhalten und melden uns in Kürze!
               </p>
             )}
           </motion.form>

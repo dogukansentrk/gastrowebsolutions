@@ -2,23 +2,78 @@
 
 import { motion } from "framer-motion";
 
-
-
 export function BackgroundPaths({
     title = "Background Paths",
+    overline,
     subtitle,
     children,
 }: {
     title?: string;
+    overline?: string;
     subtitle?: string;
     children?: React.ReactNode;
 }) {
     return (
-        <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden"
+        <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden grain-overlay"
             style={{ background: 'linear-gradient(135deg, #0A1628 0%, #0E1E38 40%, #1B3A6B 100%)' }}>
-            <div className="absolute inset-0">
-                {/* Animation removed to improve performance */}
+            
+            {/* Animated gradient orbs */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                <div 
+                    className="absolute animate-orb-1"
+                    style={{
+                        top: '10%',
+                        left: '15%',
+                        width: 500,
+                        height: 500,
+                        borderRadius: '50%',
+                        background: 'radial-gradient(circle, rgba(62,111,181,0.15) 0%, transparent 70%)',
+                        filter: 'blur(60px)',
+                    }}
+                />
+                <div 
+                    className="absolute animate-orb-2"
+                    style={{
+                        bottom: '10%',
+                        right: '10%',
+                        width: 600,
+                        height: 600,
+                        borderRadius: '50%',
+                        background: 'radial-gradient(circle, rgba(27,58,107,0.2) 0%, transparent 70%)',
+                        filter: 'blur(80px)',
+                    }}
+                />
+                <div 
+                    className="absolute animate-orb-3"
+                    style={{
+                        top: '50%',
+                        left: '50%',
+                        width: 400,
+                        height: 400,
+                        borderRadius: '50%',
+                        background: 'radial-gradient(circle, rgba(62,111,181,0.08) 0%, transparent 70%)',
+                        filter: 'blur(50px)',
+                        transform: 'translate(-50%, -50%)',
+                    }}
+                />
+
+                {/* Subtle dot grid pattern */}
+                <div 
+                    className="absolute inset-0 opacity-[0.03]"
+                    style={{
+                        backgroundImage: 'radial-gradient(circle, rgba(232,237,245,0.8) 1px, transparent 1px)',
+                        backgroundSize: '30px 30px',
+                    }}
+                />
             </div>
+
+            {/* Vignette overlay for depth */}
+            <div 
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                    background: 'radial-gradient(ellipse at center, transparent 40%, rgba(10,22,40,0.6) 100%)',
+                }}
+            />
 
             <div className="relative z-10 container mx-auto px-4 md:px-6 text-center mt-12 md:mt-20">
                 <motion.div
@@ -27,8 +82,24 @@ export function BackgroundPaths({
                     transition={{ duration: 0.5, ease: "easeOut" }}
                     className="max-w-4xl mx-auto"
                 >
-                    <h1 className="text-5xl sm:text-7xl md:text-8xl font-bold mb-8 tracking-tighter font-display
-                        text-transparent bg-clip-text bg-gradient-to-r from-white to-primary-100">
+                    {overline && (
+                        <motion.span
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.05, duration: 0.4 }}
+                            className="inline-block text-xs font-medium tracking-[3px] uppercase mb-6 px-4 py-2 rounded-full"
+                            style={{
+                                color: '#3E6FB5',
+                                background: 'rgba(27,58,107,0.15)',
+                                border: '1px solid rgba(27,58,107,0.3)',
+                            }}
+                        >
+                            {overline}
+                        </motion.span>
+                    )}
+
+                    <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-8 tracking-tighter font-display leading-[1.05]
+                        text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-primary-100/80">
                         {title}
                     </h1>
 
@@ -37,28 +108,14 @@ export function BackgroundPaths({
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.1, duration: 0.5 }}
-                            className="text-lg md:text-xl text-primary-100/60 max-w-xl mx-auto mb-10 font-light leading-relaxed"
+                            className="text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light leading-relaxed"
+                            style={{ color: 'rgba(232,237,245,0.6)' }}
                         >
                             {subtitle}
                         </motion.p>
                     )}
 
-                    {children ? children : (
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.2, duration: 0.5 }}
-                            className="inline-block"
-                        >
-                            <a
-                                href="#pakete"
-                                className="px-8 py-4 rounded-xl text-base font-semibold transition-all duration-300 hover:-translate-y-0.5"
-                                style={{ background: '#1B3A6B', color: '#EDF2FA', border: '1px solid rgba(208,223,245,0.2)' }}
-                            >
-                                Mehr erfahren &rarr;
-                            </a>
-                        </motion.div>
-                    )}
+                    {children}
                 </motion.div>
             </div>
         </div>

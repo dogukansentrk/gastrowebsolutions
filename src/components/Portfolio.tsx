@@ -1,26 +1,41 @@
 import { motion } from 'framer-motion';
+import { Clock } from 'lucide-react';
 
 const projects = [
   {
-    name: 'Hausmeisterdienste Morina',
-    type: 'Hausmeister & Facility Management',
-    image: '/bedri.webp',
-    desc: 'Professioneller Webauftritt für einen regionalen Hausmeisterdienst – mit Leistungsübersicht und direkter Kontaktaufnahme.',
-  },
-  {
-    name: 'Bruggnwirt – Restaurant',
+    name: 'Bruggnwirt – Gasthof',
     type: 'Restaurant & Gasthof',
     image: '/bruggnwirt.webp',
-    desc: 'Premium-Website für den Bruggnwirt in Kundl – mit digitaler Speisekarte und Telefonbestellung.',
+    desc: 'Premium-Website für den Bruggnwirt in Kundl – mit digitaler Speisekarte, Telefonbestellung und Google-Optimierung.',
+    result: 'Umgesetzt in 10 Tagen',
+    tags: ['Speisekarte', 'Mobile-First', 'Google Business'],
+  },
+  {
+    name: 'Hausmeisterdienste Morina',
+    type: 'Dienstleistung & Facility Management',
+    image: '/bedri.webp',
+    desc: 'Professioneller Webauftritt für einen regionalen Hausmeisterdienst – mit Leistungsübersicht und direkter Kontaktaufnahme.',
+    result: 'Umgesetzt in 8 Tagen',
+    tags: ['Leistungen', 'Kontaktformular', 'SEO'],
   },
 ];
 
 function IPhoneMockup({ image, name }: { image: string; name: string }) {
   return (
-    <div className="relative mx-auto" style={{ width: 280, height: 570 }}>
+    <div className="relative mx-auto group" style={{ width: 280, height: 570 }}>
+      {/* Glow effect behind phone */}
+      <div
+        className="absolute inset-0 rounded-[3rem] opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10"
+        style={{
+          background: 'radial-gradient(circle, rgba(62,111,181,0.2) 0%, transparent 70%)',
+          filter: 'blur(40px)',
+          transform: 'scale(1.1)',
+        }}
+      />
+
       {/* Phone outer frame */}
       <div
-        className="absolute inset-0 rounded-[3rem] overflow-hidden"
+        className="absolute inset-0 rounded-[3rem] overflow-hidden transition-transform duration-500 group-hover:scale-[1.02]"
         style={{
           background: 'linear-gradient(145deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)',
           border: '2px solid rgba(232,237,245,0.12)',
@@ -90,14 +105,14 @@ export function Portfolio() {
           transition={{ duration: 0.6 }}
         >
           <span className="text-xs font-medium tracking-[2px] uppercase" style={{ color: '#3E6FB5' }}>
-            Unsere Referenzen
+            Echte Projekte
           </span>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-4 mb-5 leading-tight">
-            Projekte, die<br />überzeugen.
+            Keine Mockups.<br />Echte Ergebnisse.
           </h2>
           <div className="w-12 h-0.5 rounded-full mb-8" style={{ background: '#1B3A6B' }} />
           <p className="text-base max-w-xl leading-relaxed font-light" style={{ color: 'rgba(232,237,245,0.55)' }}>
-            Hier sehen Sie einige unserer bisherigen Projekte – jedes individuell für den jeweiligen Betrieb umgesetzt.
+            Jedes Projekt wurde individuell für den jeweiligen Betrieb umgesetzt – von der ersten Idee bis zur fertigen Website.
           </p>
         </motion.div>
 
@@ -122,9 +137,39 @@ export function Portfolio() {
                   {project.type}
                 </div>
                 <h3 className="font-display text-xl font-bold text-white mb-3">{project.name}</h3>
-                <p className="text-sm font-light leading-relaxed" style={{ color: 'rgba(232,237,245,0.5)' }}>
+                <p className="text-sm font-light leading-relaxed mb-4" style={{ color: 'rgba(232,237,245,0.5)' }}>
                   {project.desc}
                 </p>
+
+                {/* Result badge */}
+                <div
+                  className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full mb-4"
+                  style={{
+                    background: 'rgba(27,58,107,0.2)',
+                    border: '1px solid rgba(27,58,107,0.3)',
+                    color: '#3E6FB5',
+                  }}
+                >
+                  <Clock size={12} />
+                  {project.result}
+                </div>
+
+                {/* Tags */}
+                <div className="flex flex-wrap justify-center gap-2 mt-2">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-[10px] font-light px-2.5 py-1 rounded-full"
+                      style={{
+                        background: 'rgba(232,237,245,0.04)',
+                        color: 'rgba(232,237,245,0.4)',
+                        border: '1px solid rgba(232,237,245,0.06)',
+                      }}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
             </motion.div>
           ))}

@@ -2,19 +2,67 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Lightweight CSS animation for background paths */
+/* ═══════════════════════════════════════════════
+   DESIGN SYSTEM – Premium Aesthetics
+   ═══════════════════════════════════════════════ */
+
+/* Animated gradient orbs for hero background */
+@keyframes orb-float-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+}
+
+@keyframes orb-float-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-40px, 30px) scale(1.15); }
+  66% { transform: translate(25px, -40px) scale(0.85); }
+}
+
+@keyframes orb-float-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(20px, 30px) scale(1.05); }
+}
+
+/* Subtle grain texture overlay */
+@keyframes grain-shift {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -10%); }
+  30% { transform: translate(3%, -15%); }
+  50% { transform: translate(12%, 9%); }
+  70% { transform: translate(9%, 4%); }
+  90% { transform: translate(-1%, 7%); }
+}
+
+/* Marquee animation for social proof */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Shimmer effect for premium cards */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Pulse glow for CTAs */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(62, 111, 181, 0); }
+  50% { box-shadow: 0 0 30px rgba(62, 111, 181, 0.3); }
+}
+
+/* Count up animation */
+@keyframes fade-in-up {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Background path flow */
 @keyframes path-flow {
-  0% {
-    stroke-dashoffset: 1;
-    opacity: 0.15;
-  }
-  50% {
-    opacity: 0.4;
-  }
-  100% {
-    stroke-dashoffset: 0;
-    opacity: 0.15;
-  }
+  0% { stroke-dashoffset: 1; opacity: 0.15; }
+  50% { opacity: 0.4; }
+  100% { stroke-dashoffset: 0; opacity: 0.15; }
 }
 
 .animate-path-flow {
@@ -23,16 +71,103 @@
   will-change: stroke-dashoffset, opacity;
 }
 
-/* Reduce animations on mobile for better performance */
+/* ═══════════════════════════════════════════════
+   UTILITY CLASSES
+   ═══════════════════════════════════════════════ */
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.animate-orb-1 {
+  animation: orb-float-1 20s ease-in-out infinite;
+}
+
+.animate-orb-2 {
+  animation: orb-float-2 25s ease-in-out infinite;
+}
+
+.animate-orb-3 {
+  animation: orb-float-3 18s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Grain overlay */
+.grain-overlay::after {
+  content: '';
+  position: absolute;
+  inset: -200%;
+  width: 400%;
+  height: 400%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.015;
+  pointer-events: none;
+  animation: grain-shift 8s steps(10) infinite;
+}
+
+/* Card glow effect on hover */
+.card-glow {
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-glow::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(62, 111, 181, 0.3), transparent 50%, rgba(62, 111, 181, 0.1));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+}
+
+.card-glow:hover::before {
+  opacity: 1;
+}
+
+.card-glow:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 60px rgba(62, 111, 181, 0.08);
+}
+
+/* Glass card effect */
+.glass-card {
+  background: rgba(14, 30, 56, 0.4);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(232, 237, 245, 0.06);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #D0DFF5 50%, #3E6FB5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE & ACCESSIBILITY
+   ═══════════════════════════════════════════════ */
+
 @media (max-width: 768px) {
   .animate-path-flow {
     animation-duration: 35s;
   }
+  .animate-marquee {
+    animation-duration: 20s;
+  }
 }
 
-/* Respect user preference for reduced motion (Accessibility) */
 @media (prefers-reduced-motion: reduce) {
-  .animate-path-flow {
+  .animate-path-flow,
+  .animate-marquee,
+  .animate-orb-1,
+  .animate-orb-2,
+  .animate-orb-3 {
     animation: none;
   }
   * {
@@ -42,6 +177,10 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* ═══════════════════════════════════════════════
+   BASE STYLES
+   ═══════════════════════════════════════════════ */
 
 @layer base {
   * {

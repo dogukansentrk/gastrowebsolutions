@@ -4,20 +4,28 @@ import { ChevronDown } from 'lucide-react';
 
 const faqs = [
   {
-    question: 'Gibt es laufende oder versteckte Kosten?',
-    answer: 'Nein. Bei unserem "Web Basic"-Paket zahlen Sie nur einen fairen, einmaligen Fixpreis. Laufende Kosten für Webhosting und Wartung fallen nur an, wenn Sie ganz bewusst unser "Web + Hosting"-Sorglospaket buchen.'
+    question: 'Für wen baut ihr Websites?',
+    answer: 'Für alle lokalen Betriebe – egal ob Restaurant, Café, Handwerker, Dienstleister oder Friseur. Das Prinzip ist immer dasselbe: Wir machen dich online sichtbar und bringen dir mehr Kunden.'
   },
   {
-    question: 'Wem gehört die Webseite nach Fertigstellung?',
-    answer: 'Zu 100 % Ihnen. Nach der vollständigen Bezahlung gehen alle Rechte an der Webseite an Sie über. Sie sind an keinen Knebelvertrag gebunden und können jederzeit tun und lassen, was Sie möchten.'
+    question: 'Gibt es versteckte oder laufende Kosten?',
+    answer: 'Nein. Bei unserem Starter-Paket zahlst du nur einen fairen, einmaligen Fixpreis. Laufende Kosten für Webhosting und Wartung fallen nur an, wenn du ganz bewusst unser Rundum-sorglos-Paket buchst.'
   },
   {
-    question: 'Was passiert, wenn ich später meine Speisekarte ändern muss?',
-    answer: 'Wir übergeben Ihnen die Webseite so, dass Sie kleine Textänderungen selbst vornehmen können. Falls Sie das nicht möchten, bieten wir auch eine günstige, laufende Betreuung an, bei der wir alle Änderungen für Sie übernehmen – ein kurzer Anruf oder eine WhatsApp-Nachricht genügt.'
+    question: 'Wem gehört die Website nach Fertigstellung?',
+    answer: 'Dir – zu 100 %. Nach der vollständigen Bezahlung gehen alle Rechte an dich über. Kein Knebelvertrag, keine Abhängigkeit. Du kannst jederzeit tun und lassen, was du möchtest.'
   },
   {
-    question: 'Warum seid ihr günstiger als große Werbeagenturen?',
-    answer: 'Als lokales Drei-Mann-Team (Schüler-Startup) haben wir keine teuren Büromieten oder großen Overhead-Kosten. Wir fokussieren uns zu 100 % auf die Gastronomie und haben effiziente Prozesse entwickelt, um maximale Qualität zu einem fairen Preis zu liefern.'
+    question: 'Was passiert, wenn ich später etwas ändern muss?',
+    answer: 'Wir übergeben dir die Website so, dass kleine Textänderungen einfach sind. Falls du das nicht möchtest, bieten wir auch eine günstige, laufende Betreuung an – ein kurzer Anruf oder eine WhatsApp-Nachricht genügt.'
+  },
+  {
+    question: 'Warum seid ihr günstiger als große Agenturen?',
+    answer: 'Als Startup ohne teure Büromieten oder großen Overhead können wir Agentur-Qualität zu einem Bruchteil des Preises liefern. Wir haben effiziente Prozesse entwickelt und fokussieren uns auf lokale Betriebe.'
+  },
+  {
+    question: 'Wie lange dauert es, bis meine Website fertig ist?',
+    answer: 'In der Regel 1–2 Wochen. Nach einem kurzen Erstgespräch legen wir direkt los. Du bekommst regelmäßige Updates und kannst Feedback geben, bis alles perfekt ist.'
   }
 ];
 
@@ -38,7 +46,7 @@ export function FAQ() {
             Transparenz
           </span>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-4 mb-5 leading-tight">
-            Häufige Fragen
+            Häufige Fragen –<br />ehrliche Antworten.
           </h2>
           <div className="w-12 h-0.5 rounded-full mb-12 mx-auto" style={{ background: '#1B3A6B' }} />
         </motion.div>
@@ -52,7 +60,7 @@ export function FAQ() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
+                transition={{ duration: 0.4, delay: index * 0.08 }}
                 className="rounded-2xl overflow-hidden transition-all duration-300"
                 style={{
                   background: isOpen ? 'rgba(27,58,107,0.15)' : '#0E1E38',

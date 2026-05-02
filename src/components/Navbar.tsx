@@ -7,13 +7,13 @@ interface NavbarProps {
 }
 
 const links = [
-  { id: 'ueber-uns', label: 'Über uns' },
-  { id: 'warum', label: 'Warum wir' },
-  { id: 'pakete', label: 'Pakete' },
+  { id: 'warum', label: 'Leistungen' },
+  { id: 'portfolio', label: 'Projekte' },
+  { id: 'pakete', label: 'Preise' },
   { id: 'team', label: 'Team' },
 ];
 
-const allSectionIds = ['hero', 'ueber-uns', 'warum', 'portfolio', 'pakete', 'integrationen', 'team', 'testimonials', 'termin', 'faq', 'kontakt'];
+const allSectionIds = ['hero', 'ueber-uns', 'warum', 'portfolio', 'testimonials', 'pakete', 'integrationen', 'team', 'termin', 'faq', 'kontakt'];
 
 export function Navbar({ onNavigate }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -66,7 +66,7 @@ export function Navbar({ onNavigate }: NavbarProps) {
         }}
         className="outline-none cursor-pointer flex items-center hover:opacity-90 transition-opacity"
       >
-        <img src="/logo.png" alt="GastroWeb Solutions Logo" className="h-16 w-auto object-contain" />
+        <img src="/logo.png" alt="GastroWeb Solutions Logo" className="h-20 w-auto object-contain" />
       </button>
 
       {/* Desktop links */}
@@ -108,7 +108,7 @@ export function Navbar({ onNavigate }: NavbarProps) {
               e.currentTarget.style.background = '#1B3A6B';
             }}
           >
-            Anfrage senden
+            Kostenlos anfragen
           </button>
         </li>
       </ul>
@@ -158,7 +158,7 @@ export function Navbar({ onNavigate }: NavbarProps) {
                 className="text-base font-medium px-5 py-3 rounded-lg text-center mt-2 transition-all outline-none"
                 style={{ background: '#1B3A6B', color: '#EDF2FA' }}
               >
-                Anfrage senden
+                Kostenlos anfragen
               </button>
             </div>
           </motion.div>

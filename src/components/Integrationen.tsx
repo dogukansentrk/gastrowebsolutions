@@ -1,30 +1,42 @@
 import { motion } from 'framer-motion';
-import { BookOpen, Truck, MapPin, Search } from 'lucide-react';
+import { BookOpen, MapPin, Search, Palette, Phone, BarChart3 } from 'lucide-react';
 
 const integrations = [
   {
-    icon: BookOpen,
-    title: 'Digitale Speisekarten',
-    desc: 'Immer aktuell, direkt am Smartphone abrufbar – als interaktive Webseite oder PDF. Änderungen jederzeit möglich, ohne technische Vorkenntnisse.',
-    highlight: 'Aktualisierung auf Anfrage',
+    icon: Palette,
+    title: 'Individuelles Design',
+    desc: 'Kein Template, kein Baukasten. Jede Website wird von Grund auf für deinen Betrieb gestaltet – einzigartig und professionell.',
+    highlight: 'Maßgeschneidert',
   },
   {
-    icon: Truck,
-    title: 'Lieferdienst-Verknüpfung',
-    desc: 'Direkter Link zu Lieferando und anderen Plattformen – nahtlos in Ihre Webseite integriert, damit Gäste sofort bestellen können.',
-    highlight: 'Ein Klick zur Bestellung',
+    icon: BookOpen,
+    title: 'Digitale Speisekarte / Leistungsübersicht',
+    desc: 'Ob Speisekarte, Dienstleistungen oder Produkte – übersichtlich dargestellt, auf jedem Gerät perfekt lesbar.',
+    highlight: 'Änderungen jederzeit',
   },
   {
     icon: MapPin,
-    title: 'Google Maps Integration',
-    desc: 'Ihre Gäste finden Sie auf Anhieb. Eingebettete Karte, Routenplanung und Standortinfos direkt auf Ihrer Webseite.',
+    title: 'Google Maps & Standort',
+    desc: 'Deine Kunden finden dich auf Anhieb. Eingebettete Karte, Routenplanung und alle wichtigen Infos auf einen Blick.',
     highlight: 'Sofort auffindbar',
   },
   {
     icon: Search,
-    title: 'Google Business Optimierung',
-    desc: 'Wir richten Ihren Google Business Eintrag ein und optimieren ihn, damit Sie bei lokalen Suchanfragen in Kufstein und Umgebung ganz oben stehen.',
-    highlight: 'Lokal besser gefunden werden',
+    title: 'Google Business & SEO',
+    desc: 'Wir richten deinen Google Business Eintrag ein und optimieren deine Website für lokale Suchanfragen – damit Kunden dich finden.',
+    highlight: 'Lokal ganz oben',
+  },
+  {
+    icon: Phone,
+    title: 'Direkte Kontaktaufnahme',
+    desc: 'Click-to-Call, WhatsApp-Button, Kontaktformular – deine Kunden erreichen dich mit einem Klick.',
+    highlight: 'Ein Klick genügt',
+  },
+  {
+    icon: BarChart3,
+    title: 'Besucherstatistiken',
+    desc: 'Sieh genau, wie viele Besucher deine Website hat, woher sie kommen und welche Seiten sie ansehen.',
+    highlight: 'Datenbasiert wachsen',
   },
 ];
 
@@ -40,37 +52,29 @@ export function Integrationen() {
           className="text-center"
         >
           <span className="text-xs font-medium tracking-[2px] uppercase" style={{ color: '#3E6FB5' }}>
-            Was wir integrieren
+            Was steckt drin
           </span>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-4 mb-5 leading-tight">
-            Alles, was Ihre<br />Gäste brauchen.
+            Alles, was dein<br />Betrieb braucht.
           </h2>
           <div className="w-12 h-0.5 rounded-full mb-8 mx-auto" style={{ background: '#1B3A6B' }} />
           <p className="text-base max-w-xl mx-auto leading-relaxed font-light" style={{ color: 'rgba(232,237,245,0.55)' }}>
-            Wir verstehen die Gastronomie. Deshalb integrieren wir genau die Funktionen, die Ihre Gäste erwarten – und die Ihnen mehr Umsatz bringen.
+            Wir integrieren genau die Funktionen, die deine Kunden erwarten – und die dir messbar mehr Umsatz bringen.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-16">
           {integrations.map((item, i) => (
             <motion.div
               key={item.title}
               initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="rounded-2xl p-8 md:p-9 transition-all duration-300 group relative overflow-hidden"
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+              className="rounded-2xl p-8 card-glow"
               style={{
                 background: 'rgba(10,22,40,0.5)',
                 border: '1px solid rgba(232,237,245,0.06)',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(27,58,107,0.4)';
-                e.currentTarget.style.background = 'rgba(27,58,107,0.12)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(232,237,245,0.06)';
-                e.currentTarget.style.background = 'rgba(10,22,40,0.5)';
               }}
             >
               {/* Icon */}

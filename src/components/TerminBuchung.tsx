@@ -6,8 +6,8 @@ const channels = [
     icon: MessageCircle,
     label: 'WhatsApp',
     value: '+43 676 7719737',
-    desc: 'Schreiben Sie uns direkt per WhatsApp – unkompliziert und schnell. Wir antworten in der Regel innerhalb weniger Stunden.',
-    href: 'https://wa.me/436767719737?text=Hallo%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20Webseite%20f%C3%BCr%20meinen%20Gastronomiebetrieb.',
+    desc: 'Schreib uns direkt per WhatsApp – unkompliziert und schnell. Wir antworten in der Regel innerhalb weniger Stunden.',
+    href: 'https://wa.me/436767719737?text=Hallo%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20Webseite%20f%C3%BCr%20meinen%20Betrieb.',
     btnText: 'WhatsApp öffnen',
     color: '#25D366',
     bgHover: 'rgba(37,211,102,0.15)',
@@ -17,8 +17,8 @@ const channels = [
     icon: Mail,
     label: 'E-Mail',
     value: 'gastrowebsolutions@gmail.com',
-    desc: 'Senden Sie uns eine E-Mail mit Ihren Wünschen. Wir melden uns innerhalb von 24 Stunden mit einem unverbindlichen Angebot.',
-    href: 'mailto:gastrowebsolutions@gmail.com?subject=Anfrage%20Webseite&body=Hallo%2C%0A%0Aich%20interessiere%20mich%20f%C3%BCr%20eine%20Webseite%20f%C3%BCr%20meinen%20Gastronomiebetrieb.%0A%0AMit%20freundlichen%20Gr%C3%BC%C3%9Fen',
+    desc: 'Sende uns eine E-Mail mit deinen Wünschen. Wir melden uns innerhalb von 24 Stunden mit einem unverbindlichen Angebot.',
+    href: 'mailto:gastrowebsolutions@gmail.com?subject=Anfrage%20Webseite&body=Hallo%2C%0A%0Aich%20interessiere%20mich%20f%C3%BCr%20eine%20Webseite%20f%C3%BCr%20meinen%20Betrieb.%0A%0AMit%20freundlichen%20Gr%C3%BC%C3%9Fen',
     btnText: 'E-Mail schreiben',
     color: '#3E6FB5',
     bgHover: 'rgba(62,111,181,0.15)',
@@ -41,11 +41,11 @@ export function TerminBuchung() {
             Direkt erreichen
           </span>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-4 mb-5 leading-tight">
-            Schreiben Sie uns<br />– wir antworten sofort.
+            Schreib uns –<br />wir antworten sofort.
           </h2>
           <div className="w-12 h-0.5 rounded-full mb-8 mx-auto" style={{ background: '#1B3A6B' }} />
           <p className="text-base max-w-xl mx-auto leading-relaxed font-light" style={{ color: 'rgba(232,237,245,0.55)' }}>
-            Kein Kontaktformular, kein Warten. Erreichen Sie uns direkt per WhatsApp oder E-Mail – persönlich und unkompliziert.
+            Kein Kontaktformular-Labyrinth, kein Warten. Erreiche uns direkt per WhatsApp oder E-Mail – persönlich und unkompliziert.
           </p>
         </motion.div>
 
@@ -60,7 +60,7 @@ export function TerminBuchung() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.12 }}
-              className="rounded-2xl p-8 md:p-10 block transition-all duration-300 group"
+              className="rounded-2xl p-8 md:p-10 block transition-all duration-300 group card-glow"
               style={{
                 background: 'rgba(10,22,40,0.5)',
                 border: `1px solid rgba(232,237,245,0.06)`,
